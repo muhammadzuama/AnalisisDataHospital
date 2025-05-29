@@ -60,9 +60,8 @@ Fitur-fitur:
 
 ```
 cek-rs-indonesia/
-├── app.py                 # File utama aplikasi Streamlit
-├── data/
-│   └── rumah_sakit.csv    # Dataset rumah sakit Indonesia
+├── apps.py                 # File utama aplikasi Streamlit
+├── Hospital_Indonesia_datasets.csv    # Dataset rumah sakit Indonesia
 ├── requirements.txt       # Daftar library yang digunakan
 └── README.md              # Dokumentasi proyek
 ```
