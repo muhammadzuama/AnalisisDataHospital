@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-path = '/Users/muhammadzuamaalamin/Documents/labbelajar2new/streamlite/project1/Hospital_Indonesia_datasets.csv'
+path = '/Users/muhammadzuamaalamin/Documents/labbelajar2new/streamlite/project1/Hospital_Indonesia_datasets.csv' # sesuaikan dengan path file CSV Anda
 st.title("Dashboard data rumah sakit Indonesia")
 data = pd.read_csv(path,delimiter=';')
 
@@ -90,20 +90,27 @@ elif menu == "Cek Data Kabupaten":
     filtered_data = data[data['kab'] == kab]
     jumlah  = filtered_data['id'].count()
     # Tampilkan hasil
-    st.write(f" Jumlah Data rumah sakit di Provinsi {kab}: {jumlah}")
+    st.write(f" Jumlah Data rumah sakit di Kabupaten/Kota {kab}: {jumlah}")
     st.dataframe(filtered_data)
+    # Pie chart for ownership distribution
+    st.write(f"📊 Distribusi Kelas Rumah Sakit Kabupaten/Kota {kab}")
+    new_data = data[data['kab'] == kab]
+    kelas_count = new_data['kelas'].value_counts()
+    labels = kelas_count.index
+    sizes = kelas_count.values
+
+    # Pie chart for class distribution
+    fig, ax = plt.subplots()
+    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+    ax.set_title(f"Distribusi Kelas Rumah Sakit di Kabupaten/Kota {kab}")
+    st.pyplot(fig)
+
+    # Display data in tabular format
+    st.dataframe({"Kelas Rumah Sakit": labels, "Jumlah": sizes})
 
 # Halaman Data Rumah Sakit
 elif menu == "Kesimpulan Data":
     st.title("Halaman Data Rumah Sakit")
     # Asumsikan kamu sudah punya DataFrame `data`
     # Misal: data = pd.read_csv('data_rs.csv')
-    import pandas as pd
-    data = pd.DataFrame({
-        'nama_rs': ['RS A', 'RS B', 'RS C'],
-        'propinsi': ['Jawa Timur', 'Jawa Barat', 'Jawa Timur']
-    })
 
-    prov = st.selectbox("Pilih Provinsi", data['propinsi'].unique())
-    filtered = data[data['propinsi'] == prov]
-    st.dataframe(filtered)
