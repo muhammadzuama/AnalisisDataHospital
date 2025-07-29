@@ -1,4 +1,3 @@
-Berikut adalah dokumentasi lengkap `README.md` untuk proyek **Streamlit: Cek Data Rumah Sakit di Indonesia**, termasuk **cara menjalankan aplikasinya**:
 
 ---
 
